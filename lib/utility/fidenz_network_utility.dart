@@ -1,30 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'NetworkConnectivity.dart';
+import 'network/NetworkConnectivity.dart';
 
 class FidenzNetworkUtility{
 
-  static late FidenzNetworkUtility instance;
-
-  static FidenzNetworkUtility init(){
-    instance ??= FidenzNetworkUtility();
-    return instance;
-  }
-
-  void getNetworkStatus(Function(bool isOnline) callback) {
-
+  static void getNetworkStatus(Function(bool isOnline) callback) {
     NetworkConnectivity.isNetworkAvailable().then((value) {
       callback.call(value);
     });
   }
 
-  void getNetworkStatusWithAlert(Function(bool isOnline) callback,BuildContext context,Widget snackBarWidget,Color backgroundColor) {
-
+  static void getNetworkStatusWithAlert(Function(bool isOnline) callback,BuildContext context,Widget snackBarWidget,Color backgroundColor) {
     NetworkConnectivity.isNetworkAvailable().then((value) {
       callback.call(value);
       if (!value) {
-        showNoInternetSnackBar(context, snackBarWidget,backgroundColor);
+        _showNoInternetSnackBar(context, snackBarWidget,backgroundColor);
       } else {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
       }
@@ -34,7 +25,7 @@ class FidenzNetworkUtility{
 
 
   //show no internet error message as SnackBar
-  static void showNoInternetSnackBar(
+  static void _showNoInternetSnackBar(
       BuildContext context,
       Widget widget,Color bgColor
       ) {
