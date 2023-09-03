@@ -1,6 +1,6 @@
 name: fidenz_flutter_boilerplate
 description: The Fidenz Flutter Boilerplate is a powerful and feature-rich starting template for Flutter app development.
-version: 0.0.5
+version: 0.0.6
 homepage: 'https://github.com/chalananupun/fidenz_flutter_boilerplate'
 
 environment:
